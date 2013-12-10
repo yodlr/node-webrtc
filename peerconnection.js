@@ -280,6 +280,13 @@ PeerConnection.prototype.createDataChannel = function createDataChannel(label, d
   });
 };
 
+PeerConnection.prototype.close = function close() {
+  return this._runImmediately({
+    func: 'close',
+    args: []
+  });
+}
+
 function RTCPeerConnection(configuration, constraints) {
   var pc = new PeerConnection(configuration, constraints);
 
@@ -341,28 +348,32 @@ function RTCPeerConnection(configuration, constraints) {
   });
 
   this.createOffer = function createOffer() {
-    pc.createOffer.apply(pc, arguments);
+    return pc.createOffer.apply(pc, arguments);
   };
 
   this.createAnswer = function createAnswer() {
-    pc.createAnswer.apply(pc, arguments);
+    return pc.createAnswer.apply(pc, arguments);
   };
 
   this.setLocalDescription = function setLocalDescription() {
-    pc.setLocalDescription.apply(pc, arguments);
+    return pc.setLocalDescription.apply(pc, arguments);
   };
 
   this.setRemoteDescription = function setRemoteDescription() {
-    pc.setRemoteDescription.apply(pc, arguments);
+    return pc.setRemoteDescription.apply(pc, arguments);
   };
 
   this.addIceCandidate = function addIceCandidate() {
-    pc.addIceCandidate.apply(pc, arguments);
+    return pc.addIceCandidate.apply(pc, arguments);
   };
 
   this.createDataChannel = function createDataChannel() {
     return pc.createDataChannel.apply(pc, arguments);
   };
+
+  this.close = function close() {
+    return pc.close.apply(pc, arguments);
+  }
 };
 
 module.exports = RTCPeerConnection;
