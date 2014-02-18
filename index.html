@@ -33,17 +33,35 @@
       <section id="main_content" class="inner">
         <p><a href="https://nodei.co/npm/wrtc/"><img src="https://nodei.co/npm/wrtc.png?downloads=true&amp;stars=true" alt="NPM"></a></p>
 
-<h3>
-<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h3>
+<h1>
+<a name="contributing" class="anchor" href="#contributing"><span class="octicon octicon-link"></span></a>Contributing</h1>
 
 <p>The best way to get started is to read through the <code>Getting Started</code> and <code>Example</code> sections before having a look through the open <a href="https://github.com/modeswitch/node-webrtc/issues">issues</a>. Some of the issues are marked as <code>good first bug</code>, but feel free to contribute to any of the issues there, or open a new one if the thing you want to work on isn't there yet.</p>
 
 <p>Once you've done some hacking and you'd like to have your work merged, you'll need to make a pull request. If you're patch includes code, make sure to check that all the unit tests pass, including any new tests you wrote. Finally, make sure you add yourself to the <code>AUTHORS</code> file.</p>
 
-<h3>
-<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h3>
+<h1>
+<a name="getting-started" class="anchor" href="#getting-started"><span class="octicon octicon-link"></span></a>Getting Started</h1>
+
+<h2>
+<a name="prerequisites" class="anchor" href="#prerequisites"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
 
 <p><strong>Important</strong>: Make sure you have all the prerequisite libraries installed for your platform, as described <a href="http://www.webrtc.org/reference/getting-started/prerequisite-sw">here</a>.</p>
+
+<p>We have experience recently that they have been included in latest revisions of the libWebrtc library some dev dependencies not documented on the link below. For Debian/Ubuntu/LinuxMint based systems, please install them from a command-line with:</p>
+
+<pre><code>sudo apt-get install libudev-dev libdrm-dev libgconf2-dev libgcrypt11-dev libpci-dev libxtst-dev
+</code></pre>
+
+<p><a href="https://github.com/js-platform/node-webrtc/pull/75#issuecomment-35166221">It has been reported</a> that some users would need to install some more dev libraries:</p>
+
+<pre><code>sudo apt-get install g++ python libnss3-dev libasound2-dev libpulse-dev libjpeg62-dev libxv-dev libgtk2.0-dev libexpat1-dev
+</code></pre>
+
+<p>Maybe some of this dependencies would be removed in future revisions of the library, but to be on the safe side, it's better that you install all of them. If you need to install any other library, please open an issue so we can update the list.</p>
+
+<h2>
+<a name="install" class="anchor" href="#install"><span class="octicon octicon-link"></span></a>Install</h2>
 
 <p>The easiest way to install is via npm:</p>
 
@@ -57,16 +75,16 @@ cd node-webrtc
 npm install
 </code></pre>
 
-<h4>
-<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h4>
+<h2>
+<a name="notes" class="anchor" href="#notes"><span class="octicon octicon-link"></span></a>Notes</h2>
 
 <ul>
 <li><p>Development is focused on Linux and OSX at the moment. If you're on another platform, but build process may not work for you. Feel free to comment on existing issues or open new issues and add the specific problems you're having.</p></li>
 <li><p><del>Only RTP data channels are supported at the moment. There's an open issue in <code>libjingle</code> and I'm working on fixing it so that I can enable SCTP data channels. See <a href="https://github.com/modeswitch/node-webrtc/issues/5">#5</a> for more details.</del> SCTP data channels are supported now!</p></li>
 <li><p>You will need to use the latest version of Chrome and launch it with <code>--enable-data-channels</code>.</p></li>
 <li><p><del>Firefox is not yet supported due to lack of SCTP data channel support (see above).</del> Both Firefox and newer versions of Chrome are supported.</p></li>
-</ul><h3>
-<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h3>
+</ul><h1>
+<a name="tests" class="anchor" href="#tests"><span class="octicon octicon-link"></span></a>Tests</h1>
 
 <p>Once everything is built, try <code>npm test</code> as a sanity check. You can run the data channel demo by <code>node tests/bridge.js</code> and browsing to <code>tests/peer.html</code> in <code>chrome --enable-data-channels</code>. You can pass an alternate port to the node script by <code>node tests/bridge.js &lt;port&gt;</code>. If the bridge and peer are on different machines, you can pass the bridge address to the peer by <code>http://&lt;yourmachine&gt;/peer.html?&lt;host:port&gt;</code>.</p>
 
