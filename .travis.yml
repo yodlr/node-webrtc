@@ -13,7 +13,7 @@ install:
 
 script:
   - npm install --build-from-source
-  - cat /home/travis/build/js-platform/node-webrtc/build.log
+  - tail -n500 /home/travis/build/js-platform/node-webrtc/build.log
 
 notifications:
   email: false
