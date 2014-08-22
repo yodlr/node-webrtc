@@ -21,3 +21,4 @@ notifications:
 env:
   global:
     - JAVA_HOME="/usr/lib/jvm/java-7-oracle"
+    - MAKEOPTS="-j1"
