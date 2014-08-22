@@ -7,24 +7,8 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install -y g++ python libnss3-dev libasound2-dev libpulse-dev libjpeg62-dev libxv-dev libgtk2.0-dev libexpat1-dev oracle-java7-installer subversion libudev-dev libdrm-dev libgconf2-dev libgcrypt11-dev libpci-dev libxtst-dev
   - npm install -g grunt-cli
-  - COMMIT_MESSAGE=$(git show -s --format=%B $TRAVIS_COMMIT | tr -d '\n')
-  - export PATH=./node_modules/.bin/:$PATH
-  - npm install node-gyp -g
-  - npm install aws-sdk
-  - PUBLISH_BINARY=false
-  - if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;
-  - if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;
 
-install:
-  - npm install --build-from-source
-  - npm test
-
-before_script:
-  - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
-  - node-pre-gyp clean
-  - node-gyp clean
-  
-after_failure: 
+after_script:
   - cat /home/travis/build/js-platform/node-webrtc/build.log
 
 notifications:
@@ -32,4 +16,5 @@ notifications:
   irc: "irc.mozilla.org#wrtc"
 
 env:
-  - JAVA_HOME="/usr/lib/jvm/java-7-oracle"
+  global:
+    - JAVA_HOME="/usr/lib/jvm/java-7-oracle"
