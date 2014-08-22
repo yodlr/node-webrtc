@@ -142,7 +142,7 @@
 
   function build() {
     process.stdout.write('Building libjingle ... ');
-    var args = ['-C', 'trunk/out/' + CONFIGURATION];
+    var args = ['-j1', '-C', 'trunk/out/' + CONFIGURATION];
 
     switch(PLATFORM) {
       case 'linux':
