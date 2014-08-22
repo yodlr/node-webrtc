@@ -5,7 +5,7 @@ node_js:
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y g++ python libnss3-dev libasound2-dev libpulse-dev libjpeg62-dev libxv-dev libgtk2.0-dev libexpat1-dev oracle-java7-installer subversion libudev-dev libdrm-dev libgconf2-dev libgcrypt11-dev libpci-dev libxtst-dev xscreensaver
+  - sudo apt-get install -y g++ python libnss3-dev libasound2-dev libpulse-dev libjpeg62-dev libxv-dev libgtk2.0-dev libexpat1-dev oracle-java7-installer subversion libudev-dev libdrm-dev libgconf2-dev libgcrypt11-dev libpci-dev libxtst-dev libxss-dev
   - npm install -g grunt-cli
 
 install:
