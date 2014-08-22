@@ -140,8 +140,10 @@
     );
   }
 
+  var timer;
+
   function build() {
-    process.stdout.write('Building libjingle ... ');
+    process.stdout.write('Building libjingle ...');
     var args = ['-j1', '-C', 'trunk/out/' + CONFIGURATION];
 
     switch(PLATFORM) {
@@ -150,16 +152,21 @@
         break;
       default:
         break;
-    }
+   } 
 
     process.chdir(LIB_WEBRTC_DIR);
     spawn_log(NINJA,
       args,
       complete
     );
+    
+    timer = setInterval(function() {
+      process.stdout.write('.');
+    }, 10000);
   }
 
   function complete() {
+    clearInterval(timer);
     process.stdout.write('Build complete\r\n');
   }
 
