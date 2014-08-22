@@ -8,12 +8,15 @@ before_install:
   - sudo apt-get install -y g++ python libnss3-dev libasound2-dev libpulse-dev libjpeg62-dev libxv-dev libgtk2.0-dev libexpat1-dev oracle-java7-installer subversion libudev-dev libdrm-dev libgconf2-dev libgcrypt11-dev libpci-dev libxtst-dev
   - npm install -g grunt-cli
 
-after_script:
+install:
+  - echo "Skipping a normal install"
+
+script:
+  - npm install --build-from-source
   - cat /home/travis/build/js-platform/node-webrtc/build.log
 
 notifications:
   email: false
-  irc: "irc.mozilla.org#wrtc"
 
 env:
   global:
