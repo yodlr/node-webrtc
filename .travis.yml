@@ -23,7 +23,7 @@ install:
 
 before_script:
   - echo $PUBLISH_BINARY
-  - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
+  - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package unpublish publish; fi;
   - node-pre-gyp clean
   - node-gyp clean
 
