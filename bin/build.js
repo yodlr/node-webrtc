@@ -121,28 +121,50 @@
       gclient_sync
     )
   }
+  
+  var timer = null;
+  
+  function startTimer() {
+    timer = setInterval(function() {
+      process.stdout.write('.');
+    }, 10000);
+  }
+  
+  function stopTimer() {
+    process.stdout.write('\r\n');
+    clearInterval(timer);
+    timer = null;
+  }
 
   function gclient_sync() {
     process.stdout.write('Syncing upstream libjingle ... ');
     process.chdir(LIB_WEBRTC_DIR);
+    
     spawn_log(GCLIENT,
       ['sync', '-f', '-n', '-D', '-j1', '-r'+LIBWEBRTC_REVISION],
       gclient_runhooks
     )
+    
+    startTimer();
   }
 
   function gclient_runhooks(cb) {
+    stopTimer();
+    
     process.stdout.write('Executing runhooks ... ');
     process.chdir(LIB_WEBRTC_DIR);
+    
     spawn_log(GCLIENT,
       ['runhooks', '-j1'],
       build
     );
+    
+    startTimer();
   }
 
-  var timer;
-
   function build() {
+    stopTimer();
+    
     process.stdout.write('Building libjingle ...');
     var args = ['-j1', '-C', 'trunk/out/' + CONFIGURATION];
 
@@ -160,13 +182,12 @@
       complete
     );
     
-    timer = setInterval(function() {
-      process.stdout.write('.');
-    }, 10000);
+    startTimer();
   }
 
   function complete() {
-    clearInterval(timer);
+    stopTimer();
+    
     process.stdout.write('Build complete\r\n');
   }
 
