@@ -13,10 +13,9 @@ before_install:
   - npm install -g grunt-cli
   - npm install node-gyp -g
   - npm install aws-sdk
-  - PUBLISH_BINARY=false
+  - PUBLISH_BINARY=true
   - if [[ $TRAVIS_BRANCH == `git describe --tags --always HEAD` ]]; then PUBLISH_BINARY=true; fi;
-  - if test "${COMMIT_MESSAGE#*'[publish binary]'}" != "$COMMIT_MESSAGE"; then PUBLISH_BINARY=true; fi;
-
+  
 install:
   - npm install --build-from-source
   - tail -n500 /home/travis/build/js-platform/node-webrtc/build.log
