@@ -22,6 +22,7 @@ install:
   - tail -n500 /home/travis/build/js-platform/node-webrtc/build.log
 
 before_script:
+  - echo $PUBLISH_BINARY
   - if [[ $PUBLISH_BINARY == true ]]; then node-pre-gyp package publish; fi;
   - node-pre-gyp clean
   - node-gyp clean
