@@ -76,7 +76,7 @@
           process.stderr.write('error (see build.log for details): ', code, signal, '\r\n');
           process.exit(-1);
         } else {
-          process.stdout.write('done\r\n');
+          process.stdout.write(' done\r\n');
           process.nextTick(nextstep);
         }
       });
@@ -131,7 +131,6 @@
   }
   
   function stopTimer() {
-    process.stdout.write('\r\n');
     clearInterval(timer);
     timer = null;
   }
@@ -165,7 +164,7 @@
   function build() {
     stopTimer();
     
-    process.stdout.write('Building libjingle ...');
+    process.stdout.write('Building libjingle ... ');
     var args = ['-j1', '-C', 'trunk/out/' + CONFIGURATION];
 
     switch(PLATFORM) {
