@@ -48,9 +48,6 @@
 <h2>
 <a id="prerequisites" class="anchor" href="#prerequisites" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prerequisites</h2>
 
-<h3>
-<a id="linux" class="anchor" href="#linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Linux</h3>
-
 <ul>
 <li>python2</li>
 <li>git</li>
@@ -62,11 +59,31 @@
 </ul>
 
 <h3>
+<a id="debianubuntu" class="anchor" href="#debianubuntu" aria-hidden="true"><span class="octicon octicon-link"></span></a>Debian/Ubuntu</h3>
+
+<p>To install prerequisites with the apt-get package manager,</p>
+
+<p><code>apt-get install python2.7 git-all pkg-config libncurses5-dev libssl-dev libnss3-dev libexpat-dev</code></p>
+
+<h3>
+<a id="centosfedorarhel" class="anchor" href="#centosfedorarhel" aria-hidden="true"><span class="octicon octicon-link"></span></a>CentOS/Fedora/RHEL</h3>
+
+<p>To install prerequisites with the yum package manager,</p>
+
+<p><code>yum install python git pkgconfig openssl-devel ncurses-devel nss-devel expat-devel</code></p>
+
+<h3>
 <a id="osx" class="anchor" href="#osx" aria-hidden="true"><span class="octicon octicon-link"></span></a>OSX</h3>
 
 <ul>
 <li>XCode</li>
 </ul>
+
+<p>To install prerequisites using the homebrew package manager,</p>
+
+<pre><code>brew update
+brew install git openssl pkg-config openssl ncurses nss expat
+</code></pre>
 
 <p>Some of these libraries may be installed by default. Package names for these libraries may differ between distributions.</p>
 
