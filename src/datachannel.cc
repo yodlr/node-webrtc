@@ -246,7 +246,8 @@ NAN_METHOD(DataChannel::Send) {
     self->_jingleDataChannel->Send(buffer);
   } else {
 
-#if NODE_MINOR_VERSION >= 11
+// NODE_MINOR_VERSION >=11 means Node 0.11 & 0.12, NMV >=42 means iojs
+#if NODE_MINOR_VERSION >= 11 || NODE_MODULE_VERSION >= 42
     v8::Local<v8::ArrayBuffer> arraybuffer;
 
     if (args[0]->IsArrayBuffer()) {
