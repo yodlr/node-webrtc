@@ -194,7 +194,6 @@ void DataChannel::Run(uv_async_t* handle, int status)
         NanMakeWeakPersistent(callback, data, &MessageWeakCallback);
 
         // cleanup message event
-        delete[] data->message;
         data->message = NULL;
         delete data;
 
